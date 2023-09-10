@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins", "sans-serif";   /* Google Fonts */
+}
+/* Shortcut : m-0 and p-0 */
+
+/* 
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins", "sans-serif";
+} 
+*/
+
+
+#wrapper{
+    height: 100vh;
+    overflow-x: hidden;
+
+    /* Hume Z-axes pe bhi kaam krna hai, foreground wali image hamare pass dikh rhi, background image durr relative to foreground */
+
+    /* Turning on Perspective */
+    perspective: 10px;
+    /* Apne eye aur wrapper ke beech ka ek distance define kiya. Hamara eye contact screen pe z-axes ke along hota hai */
+
+}
+
+.container{
+    /* position: relative; */
+    height: 100%;   /* height relative to wrapper 100vh */
+
+    /* Maine jo 3D properties lagaya hu wrapper me, wo container(CHILD) me lge, for that we have to preserve it */
+    transform-style: preserve-3d;
+}
+
+.background, .foreground{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    /* foreground image aur background image overlapped ho gyi, foreground image 100vh,vw ke sath stacked ho gyi background image ke upar
+    Background image ki bhi height,width 100vh,vw hai lekin piche.. Use pesticide to observe.. 
+    FOREGROUND image ke transparent background ke wajah se piche wala mountain dikh rha hai ( AWESOME )
+    */
+    z-index: -1;
+
+    object-fit: cover;
+ /* Object fit property is used to specify how an <img> or <video> should be resized to fit its container, iske bina image streched lag rhi thi */
+
+}
+
+/* Hume mountain wali image ka view durr rkhna hai hamare eye contact se as compare to Uncle ki image */
+.background{
+    transform: translateZ(-40px) scale(5.1);
+}
+
+.foreground{
+    transform: translateZ(-20px) scale(3);
+}
+/* Observe after this -> Moving speed = h1 > uncle > mountain, refer Pesticide to get a feel of layer along z-axes */
+
+
+/* Yeah padding, margin, font,etc ki value apko designer deta */
+h1{
+    position: absolute;
+    top: 3rem;
+    left: 25%;
+    /* if 
+    left:50%; 
+    then you have to translate it on x-axes for bringing it to center 
+    transform: translateX(-50%); 
+    */
+    font-size: 10rem;
+    letter-spacing: 4px;
+    color: white;
+    text-shadow: 0 0 10px rgb(0,0,0,0.3);
+}
+
+section{
+    position: relative;
+    background-color: rgb(45,45,45);
+    color: white;
+    padding: 5rem 0;
+}
+
+.secHeading{
+    font-size: 5rem;
+    padding: 0 10rem;
+}
+
+.text{
+    font-size: 1.5rem;
+    padding: 0 10rem;
+    margin: 5rem 0;
+}
+
+.bg{
+    position: relative;
+    width: 100%;
+    background-attachment: fixed;  /* backgrnd-image ko fixed kar diye, ab content uske upar scroll krnga */
+    background-position: center;
+    background-size: cover;   
+    /* Same as Object-fit:cover */
+    height: 480px;
+}
+
+.desc{
+    position: absolute;
+    background-color: #fff;
+    padding: 0.5rem 2.5rem;
+    top: 50%;
+    left: 50%;
+    color: #000;
+    font-size: 3.5rem;
+    font-weight: 600;
+    /* transform: translateX(-50%) translateY(-50%); */
+    transform: translate(-50%, -50%);
+}
+
+.bg1{
+    background-image: url(./images/sport-1.jpg);
+}
+
+.bg2{
+    background-image: url(./images/sport-2.jpg);
+}
+
+.bg3{
+    background-image: url(./images/sport-3.jpg);
+}
+
+/* Question : background-image vs image tag 
+
+Image -> 1. Use IMG if you intend to have people print your page and you want the image to be included by default. 
+        2. Use IMG plus alt attribute if the image is part of the content such as a logo or diagram or person (real person, not stock photo people).
+        3. Using img instead of background-image can dramatically improve performance of animations over a background.
+
+Background-image -> 1. Use CSS background images if the image is not part of the content.
+                    2. Use background-image if you intend to have people print your page and you do not want the image to be included by default.  
+
+*/
+
